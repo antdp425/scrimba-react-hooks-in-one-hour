@@ -1,28 +1,19 @@
-import "./App.css";
-import React, { useState } from 'react'
-import Name from './Name'
+import React, { useState, useEffect } from 'react'
+import randomColor from 'randomcolor'
 
-function App() {
-  // here we are destructuring useState, which is just a function
-  // that returns an array: [ourVariable, ourFunction that sets ourVariable]
-  // let [count, setCount] = useState(0);
+export default function App() {
+  const [count, setCount] = useState(0)
+  const [color, setColor] = useState(null)
 
-  // useState allows us to pass in the starting value, here it is 0
+  useEffect(() => {
+    setColor(randomColor)
+  },[count])
 
   return (
-    <div className="App">
-      {/* {count}
-      <br/>
-
-    {/* here we're using setCount from above to increase the value */}
-    {/* while we could've just said setCount(count++) */}
-      {/* <button onClick={() => setCount(prevCount => prevCount + 1)}>Increase Counter</button>
-      <button onClick={() => setCount(prevCount => prevCount - 1)}>Decrease Counter</button>
-      <br/> */}
-
-      <Name />
+    <div style={{ borderTop: `10px solid ${color}`}}>
+      {count}
+      <button onClick={() => setCount(currentCount => currentCount - 1)}>-</button>
+      <button onClick={() => setCount(currentCount => currentCount + 1)}>+</button>
     </div>
-  );
+  )
 }
-
-export default App;
