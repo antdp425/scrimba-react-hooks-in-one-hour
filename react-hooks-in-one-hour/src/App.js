@@ -8,6 +8,8 @@ export default function App() {
   useEffect(() => {
     setColor(randomColor)
   },[count])
+  // Runs on each render, unless we include dependency array
+  // which will only make the function run when something in the array changes
 
   return (
     <div style={{ borderTop: `10px solid ${color}`}}>
